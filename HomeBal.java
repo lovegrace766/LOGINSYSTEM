@@ -44,7 +44,7 @@ public class HomeBal {
         return list;
     }
 
-    //CREATE METHOD FOR UPDATE
+    //CREATE METHOD FOR get data on click in jtable
     public HomeBean returnAllDataToTextFields(int id){
         HomeBean bean = null;
 
@@ -75,6 +75,46 @@ public class HomeBal {
     return bean;
 
     }
+    
+    
+    
+    //create a method for update
+    public void updateDate(HomeBean bean){
+        try {
+            DB.loadConnection();
+            
+            String query = "UPDATE employee SET first_name=?, last_name=?, gender=?, province=?, date=?, address=? WHERE id=?";
+            PreparedStatement ps = DB.con.prepareStatement(query);
+
+            ps.setString(1, bean.getFirstname());
+            ps.setString(2, bean.getLastName());
+            ps.setString(3, bean.getGender());
+            ps.setString(4, bean.getProvince());
+            ps.setObject(5, bean.getDate());
+            ps.setString(6, bean.getAddress());
+            ps.setInt(7, bean.getId());
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "A record has been update");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, ""+e);
+            }
+}
+    
+    // delete method createhere
+    
+    public void deleteRecord(int id){
+        try {
+            String query = "delete from employee where Id = ?";
+            PreparedStatement ps = DB.con.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "A record has been deleted..");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, ""+e);
+            }
+    }
+    
     
     
     // ✅ NOW INSIDE CLASS

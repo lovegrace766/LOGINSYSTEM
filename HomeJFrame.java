@@ -231,12 +231,14 @@ import javax.swing.table.DefaultTableModel;
         jButtonUpdate.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
         jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(this::jButtonUpdateActionPerformed);
         jPanel4.add(jButtonUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 90, -1));
 
         jButtonDelete.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDelete.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
         jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(this::jButtonDeleteActionPerformed);
         jPanel4.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 90, -1));
 
         jButtonClear.setBackground(new java.awt.Color(0, 102, 204));
@@ -326,7 +328,7 @@ import javax.swing.table.DefaultTableModel;
         homeObj.insert(homeBean);   // through object we are passing object to insert method
         loadTable();
     }//GEN-LAST:event_jButtonInsertActionPerformed
-
+    int id = 0; //id update
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int row = jTable1.getSelectedRow();
 
@@ -335,7 +337,7 @@ import javax.swing.table.DefaultTableModel;
         } else {
 
             // GET VALUES FROM TABLE
-            int id = (int) jTable1.getValueAt(row, 0);
+            this.id = (int) jTable1.getValueAt(row, 0);
             String firstName = jTable1.getValueAt(row, 1).toString();
             String lastName = jTable1.getValueAt(row, 2).toString();
             String gender = jTable1.getValueAt(row, 3).toString();
@@ -359,6 +361,27 @@ import javax.swing.table.DefaultTableModel;
 
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        String first_Name = jTextFieldFirstName.getText();
+        String last_Name = jTextFieldLastName.getText();
+        String gender = (String) jComboBoxGender.getSelectedItem();
+        String province = (String) jComboBoxProvince.getSelectedItem();
+        Date date = jDateChooserDate.getDate();
+        String address = jTextAreaAddress.getText();
+        HomeBean bean = new HomeBean(id, first_Name, last_Name, gender, province, date, address);
+        HomeBal bal = new HomeBal ();
+        bal.updateDate(bean);
+        loadTable(); // after update reload jtable again..
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        
+        com.home.HomeBal bal = new com.home.HomeBal();
+        bal.deleteRecord(id);
+        loadTable(); // after deleting record again jtable mean refresh table
+        
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**
      * @param args the command line arguments
