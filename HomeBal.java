@@ -33,7 +33,7 @@ public class HomeBal {
                 Date date = rs.getDate("date");
                 String address = rs.getString("address");
               //create homebean object
-                HomeBean bean = new HomeBean(0, first_Name, last_Name, gender, province, date, address);
+                HomeBean bean = new HomeBean(id, first_Name, last_Name, gender, province, date, address);
                 list.add(bean); // add bean in list
             }
 
@@ -44,6 +44,39 @@ public class HomeBal {
         return list;
     }
 
+    //CREATE METHOD FOR UPDATE
+    public HomeBean returnAllDataToTextFields(int id){
+        HomeBean bean = null;
+
+    try {
+        DB.loadConnection();
+
+        String query = "SELECT * FROM employee WHERE id = ?";
+        PreparedStatement ps = DB.con.prepareStatement(query);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            String gender = rs.getString("gender");
+            String province = rs.getString("province");
+            java.util.Date date = rs.getDate("date");
+            String address = rs.getString("address");
+
+            bean = new HomeBean(id, firstName, lastName, gender, province, date, address);
+        }
+    
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "" + e);
+    }
+
+    return bean;
+
+    }
+    
+    
     // ✅ NOW INSIDE CLASS
     public void insert(HomeBean homeBean){
         try {
@@ -66,5 +99,4 @@ public class HomeBal {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, ""+e);
         }
-    }
-}
+    }}
