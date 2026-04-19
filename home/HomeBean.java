@@ -12,9 +12,9 @@ import java.util.Date;
  */
 public class HomeBean {
     //create here instanca variable..
-    
-    private String firstname;
-    private String lastName;
+    private int id;
+    private String first_name;
+    private String last_Name;
     private String gender;
     private String province;
     private Date date;
@@ -22,9 +22,10 @@ public class HomeBean {
     
     //constructor..
 
-    public HomeBean(String firstname, String lastName, String gender, String province, Date date, String address) {
-        this.firstname = firstname;
-        this.lastName = lastName;
+    public HomeBean(int id, String first_name, String last_Name, String gender, String province, Date date, String address) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_Name = last_Name;
         this.gender = gender;
         this.province = province;
         this.date = date;
@@ -32,20 +33,28 @@ public class HomeBean {
     }
     // getter and setter methods..
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getFirstname() {
-        return firstname;
+        return first_name;
     }
 
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.first_name = firstname;
     }
 
     public String getLastName() {
-        return lastName;
+        return last_Name;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.last_Name = lastName;
     }
 
     public String getGender() {
