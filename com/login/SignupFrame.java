@@ -40,9 +40,9 @@ public class SignupFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextFieldFullName = new javax.swing.JTextField();
+        jTextFieldEmail = new javax.swing.JTextField();
+        jPasswordFieldPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -95,18 +95,18 @@ public class SignupFrame extends javax.swing.JFrame {
         jLabel5.setText("Password");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("jTextField1");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 290, 30));
+        jTextFieldFullName.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jTextFieldFullName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
+        jPanel3.add(jTextFieldFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 290, 30));
 
-        jTextField2.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 290, 30));
+        jTextFieldEmail.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        jTextFieldEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
+        jPanel3.add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 290, 30));
 
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
-        jPasswordField1.addActionListener(this::jPasswordField1ActionPerformed);
-        jPanel3.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 290, 30));
+        jPasswordFieldPassword.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jPasswordFieldPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
+        jPasswordFieldPassword.addActionListener(this::jPasswordFieldPasswordActionPerformed);
+        jPanel3.add(jPasswordFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 290, 30));
 
         jButton1.setBackground(new java.awt.Color(0, 102, 204));
         jButton1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
@@ -129,18 +129,37 @@ public class SignupFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void jPasswordFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_jPasswordFieldPasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+      this.hide(); //that means the current frame hide when i click when i click on signup button
+        LoginFrame LoginObj = new LoginFrame();
+        LoginObj.show(); //showup signup frame
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.hide(); //that means the current frame hide when i click when i click on signup button
+      this.hide(); //that means the current frame hide when i click when i click on signup button
         LoginFrame LoginObj = new LoginFrame();
         LoginObj.show(); //showup signup frame
+        //get data from text field which we will give during signup in text fields
+        
+        String fullName = jTextFieldFullName.getText();
+        String email = jTextFieldEmail.getText();
+        String pass = jPasswordFieldPassword.getText();
+        
+        // pass these value to constructor in which create in bean class
+        
+        
+        
+        
+        Bean beanObj = new Bean(fullName, email, pass);
+        //create bal class object..
+        Bal balObj = new Bal();
+        balObj.insertDataSignup(beanObj);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -172,7 +191,7 @@ public class SignupFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordFieldPassword;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -180,7 +199,7 @@ public class SignupFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JTextField jTextFieldFullName;
     // End of variables declaration//GEN-END:variables
 }
