@@ -61,6 +61,18 @@ import javax.swing.table.DefaultTableModel;
             System.out.println("Size: 0" + list.size());
         }
 
+        // create a method here
+        public void clearTextFieldData(){
+            jTextFieldFirstName.setText("");
+            jTextFieldLastName.setText("");
+            jDateChooserDate.setDate(null);
+            jTextAreaAddress.setText("");     
+        }
+        
+        
+        
+        
+        
         /**
          * This method is called from within the constructor to initialize the
          * form. WARNING: Do NOT modify this code. The content of this method is
@@ -238,12 +250,14 @@ import javax.swing.table.DefaultTableModel;
         jButtonDelete.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
         jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(this::jButtonDeleteActionPerformed);
         jPanel4.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 90, -1));
 
         jButtonClear.setBackground(new java.awt.Color(0, 102, 204));
         jButtonClear.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
         jButtonClear.setForeground(new java.awt.Color(255, 255, 255));
         jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(this::jButtonClearActionPerformed);
         jPanel4.add(jButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 90, -1));
 
         jButtonInsert.setBackground(new java.awt.Color(0, 102, 204));
@@ -326,6 +340,7 @@ import javax.swing.table.DefaultTableModel;
         com.home.HomeBal homeObj = new com.home.HomeBal();
         homeObj.insert(homeBean);   // through object we are passing object to insert method
         loadTable();
+        clearTextFieldData();
     }//GEN-LAST:event_jButtonInsertActionPerformed
     int id = 0; //id update
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -372,7 +387,23 @@ import javax.swing.table.DefaultTableModel;
         HomeBal bal = new HomeBal ();
         bal.updateDate(bean);
         loadTable(); // after update reload jtable again..
+        clearTextFieldData();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        
+        com.home.HomeBal bal = new com.home.HomeBal();
+        bal.deleteRecord(id);
+        loadTable(); // after deleting record again jtable mean refresh table
+        clearTextFieldData();
+        
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        
+        clearTextFieldData();
+        
+    }//GEN-LAST:event_jButtonClearActionPerformed
 
     /**
      * @param args the command line arguments

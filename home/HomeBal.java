@@ -99,10 +99,23 @@ public class HomeBal {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, ""+e);
             }
-    
-    
-    
 }
+    
+    // delete method createhere
+    
+    public void deleteRecord(int id){
+        try {
+            String query = "delete from employee where Id = ?";
+            PreparedStatement ps = DB.con.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "A record has been deleted..");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, ""+e);
+            }
+    }
+    
+    
     
     // ✅ NOW INSIDE CLASS
     public void insert(HomeBean homeBean){
